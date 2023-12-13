@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buaa.markpp.dao.FavorDao">
+    <insert id="add" parameterType="Favor" keyProperty="favorId" useGeneratedKeys="true">
+        insert into favor(collector_id, post_id) values (#{collectorId}, #{postId});
+    </insert>
+    <select id="selectByPostAndUser" resultType="Favor">
+        select * from favor where collector_id = #{accountId} and post_id = #{postId};
+    </select>
+    <delete id="delete" parameterType="int">
+        delete from favor where favor_id = #{favorId};
+    </delete>
+</mapper>

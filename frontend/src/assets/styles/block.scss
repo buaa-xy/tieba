@@ -1,0 +1,120 @@
+.block {
+
+  padding-left: 10px;
+  padding-right: 10px;
+
+  border-right: 8px solid var(--bg-color);
+
+  font-size: 14px;
+
+  ::v-deep a {
+    color: #1abc9c;
+  }
+
+  ::v-deep a:hover {
+    color: #16a085;
+  }
+
+  ::v-deep a,
+  img {
+    /*transition*/
+    -webkit-transition: all .12s linear;
+    -moz-transition: all .12s linear;
+    -o-transition: all .12s linear;
+    transition: all .12s linear;
+  }
+
+  ::v-deep body {
+    font-size: 1em;
+    line-height: 1.7em;
+    color: var(--text-color);
+    font-weight: normal;
+  }
+
+  ::v-deep h1,
+  ::v-deep h2,
+  ::v-deep h3,
+  ::v-deep h4,
+  ::v-deep h5,
+  ::v-deep h6 {
+    position: relative;
+    margin: 0.8em 0 0.8em;
+    color: var(--heading-color);
+  }
+
+  ::v-deep h1,
+  ::v-deep h2 {
+    text-transform: uppercase;
+  }
+
+  ::v-deep h1 {
+    font-size: 2em;
+    line-height: 1.2em;
+  }
+
+  ::v-deep h2 {
+    font-size: 1.8em;
+    line-height: .9em;
+  }
+
+  ::v-deep h3 {
+    font-size: 1.4em;
+    line-height: .9em;
+  }
+
+  ::v-deep h4 {
+    font-size: 1.2em;
+    line-height: .5em;
+  }
+
+  ::v-deep table {
+    width: 100%;
+    padding: 0;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+  ::v-deep table tr {
+    border-top: .1em solid var(--table-border-color);
+    margin: 0;
+    padding: 0;
+  }
+
+  ::v-deep table th {
+    font-weight: bold;
+    border: .1em solid var(--table-border-color);
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+  }
+
+  ::v-deep table td {
+    border: .1em solid var(--table-border-color);
+    margin: 0;
+    padding: 6px 13px;
+  }
+
+  ::v-deep table tr:nth-child(2n) {
+    background-color: var(--table-n2-bg-color);
+  }
+
+  ::v-deep table tr th:first-child,
+  ::v-deep table tr td:first-child {
+    margin-top: 0;
+  }
+
+  ::v-deep table tr th:last-child,
+  ::v-deep table tr td:last-child {
+    margin-bottom: 0;
+  }
+
+  ::v-deep body {
+    font-family: var(--text-font) !important;
+    color: var(--text-color);
+    -webkit-font-smoothing: subpixel-antialiased;
+    text-rendering: optimizeLegibility;
+    letter-spacing: 0;
+    margin: 0;
+    overflow-x: hidden;
+  }
+}

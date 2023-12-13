@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buaa.markpp.dao.PostDao">
+    <insert id="insert" parameterType="Post" useGeneratedKeys="true" keyProperty="postId">
+        insert into post(title, author_id, time, annotation_allowed) values (#{title}, #{authorId}, now(), #{annotationAllowed})
+    </insert>
+    <select id="select" parameterType="int" resultType="Post">
+        select * from post where post_id = #{postId};
+    </select>
+    <select id="selectByAccountId" parameterType="int" resultType="Post">
+        select * from post where author_id = #{accountId};
+    </select>
+    <update id="update" parameterType="Post">
+        update post set title = #{title}, time  = now(),
+                        annotation_allowed = #{annotationAllowed}
+        where post_id = #{postId}
+    </update>
+    <select id="search" resultType="Post">
+        select * from post where title like concat(concat('%', #{keyword}), '%')
+    </select>
+    <select id="selectSortedByTime" parameterType="int" resultType="Post">
+        select * from post order by time desc limit #{number}
+    </select>
+    <select id="selectSortedByHeat" parameterType="int" resultType="Post">
+        select p1.post_id, title, author_id, time, annotation_allowed from post as p1 join
+                                                                           (select coalesce(sum(value), 0) likes, p.post_id post_id from
+                                                                               `like` right join post p on `like`.post_id = p.post_id group by p.post_id) as c1
+                                                                           on p1.post_id = c1.post_id order  by likes desc limit #{number}
+    </select>
+    <select id="selectFavorites" parameterType="int" resultType="Post">
+        select post.post_id, title, author_id, post.time from post join favor f on post.post_id = f.post_id where f.collector_id = #{userId};
+    </select>
+</mapper>

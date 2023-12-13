@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buaa.markpp.dao.VoteDao">
+    <select id="sum" resultType="int" parameterType="int">
+        select coalesce(sum(value), 0) from vote where comment_id = #{commentId};
+    </select>
+    <insert id="addVote" parameterType="Vote" useGeneratedKeys="true" keyProperty="voteId">
+        insert into vote(voter_id, comment_id, value) value(#{voterId}, #{commentId}, #{value})
+    </insert>
+    <delete id="delete" parameterType="int">
+        delete from vote where vote_id = #{voteId};
+    </delete>
+    <select id="selectByCommentAndUser" resultType="Vote">
+        select * from vote where comment_id = #{commentId} and voter_id = #{accountId};
+    </select>
+</mapper>

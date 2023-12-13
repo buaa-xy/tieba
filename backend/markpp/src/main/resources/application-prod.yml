@@ -1,0 +1,7 @@
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    host: 172.25.39.236
+resource:
+  storage-directory: /data/img

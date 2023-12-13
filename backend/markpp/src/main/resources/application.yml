@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    default: dev
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    url: jdbc:mysql://${spring.datasource.host}:3306/markpp?serverTimezone=GMT%2B8&useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.mysql.cj.jdbc.MysqlConnectionPoolDataSource
+    username: j2ee
+    password: j2ee114514
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: off
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.buaa.markpp.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+server:
+  port: 8090
+  servlet:
+    session:
+      timeout: 30d
+resource:
+  allowed-suffixes: jpg,jpeg,jpe,jfif,png,gif,bmp,tiff,tif,ico

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buaa.markpp.dao.CommentDao">
+    <insert id="insert" parameterType="Comment" keyProperty="commentId" useGeneratedKeys="true">
+        insert into comment(commentator_id, time, content, post_id)
+        values (#{commentatorId}, now(), #{content},  #{postId});
+    </insert>
+    <select id="selectByPostId" parameterType="int" resultType="Comment">
+        select * from comment where post_id = #{postId};
+    </select>
+    <select id="count" parameterType="int" resultType="int">
+        select coalesce(COUNT(*), 0) from comment where post_id = #{postId};
+    </select>
+    <select id="select" parameterType="int" resultType="Comment">
+        select * from comment where comment_id = #{commentId};
+    </select>
+</mapper>

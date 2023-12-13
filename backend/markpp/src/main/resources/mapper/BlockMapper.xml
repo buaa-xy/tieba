@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buaa.markpp.dao.BlockDao">
+    <insert id="insert" parameterType="Block" useGeneratedKeys="true" keyProperty="blockId">
+        insert into block(post_id,
+                          <if test="firstSonId > 0">first_son_id,</if>
+                          <if test="nextBrotherId > 0">next_brother_id, </if>
+                          content)
+                    values (#{postId},
+                            <if test="firstSonId > 0"> #{firstSonId},</if>
+                            <if test="nextBrotherId > 0">#{nextBrotherId} ,</if>
+                            #{content});
+    </insert>
+    <select id="select" parameterType="int" resultType="Block">
+        select * from block where block_id = #{blockId};
+    </select>
+    <select id="selectBlockRoot" parameterType="int" resultType="Block">
+        select * from block as t1 where post_id = #{postId} and not exists(
+                select * from block where next_brother_id = t1.block_id or first_son_id = t1.block_id
+            )
+    </select>
+    <delete id="deleteByBlockId" parameterType="int">
+        delete from block where block_id = #{blockId}
+    </delete>
+</mapper>

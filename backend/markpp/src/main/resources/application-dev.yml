@@ -1,0 +1,7 @@
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    host: localhost
+resource:
+  storage-directory: ./.tmp
